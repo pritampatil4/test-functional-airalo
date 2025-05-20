@@ -1,0 +1,27 @@
+{
+  "name": "test-functional-airalo",
+  "version": "1.0.0",
+  "description": "Functional tests for Airalo website",
+  "main": "index.js",
+  "scripts": {
+    "tests":"npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pritampatil4/test-functional-airalo.git"
+  },
+  "keywords": [
+    "functional",
+    "tests"
+  ],
+  "author": "Pritam Patil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pritampatil4/test-functional-airalo/issues"
+  },
+  "homepage": "https://github.com/pritampatil4/test-functional-airalo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.19"
+  }
+}
