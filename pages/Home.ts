@@ -29,10 +29,10 @@ class HomePage {
 
 
   //action methods
-  async searchCountryName(countryName: string) {
-    await this.fieldSearchInput.fill(countryName);
-    await this.page.waitForTimeout(5000);
-    // await this.fieldSearchInput.press("Enter");
+  async searchJapanCountryName() {
+    await this.fieldSearchInput.fill("Japan");
+    // await this.page.waitForTimeout(5000);
+    await this.fieldSearchInput.press("Enter");
   }
 
   async clickCookieAccept() {
@@ -43,7 +43,8 @@ class HomePage {
     await this.buttonPushNotificationNo.click();
   }
 
-  async clickJapanOption() {
+  async waitAndClickJapanOption() {
+    expect(this.optionJapan).toBeVisible({timeout: 10000});
     await this.optionJapan.click({force: true});
   }
 

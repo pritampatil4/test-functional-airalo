@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { HomePage } from "../pages/Home";
 import { JapanPage } from "../pages/Japan";
 
@@ -11,25 +11,14 @@ test.describe("Airalo eSIM Purchase Flow - Japan", () => {
     if (!test.info().project.use.headless) {
       await homePage.clickPushNotificationNo();
     }
-    await homePage.searchCountryName("Japan");
-    await page.waitForTimeout(5000);
-    await homePage.clickJapanOption();
-    await page.waitForTimeout(5000);
+    await homePage.searchJapanCountryName();
+    await homePage.waitAndClickJapanOption();
     await japanPage.isOnJapanPage();
-    await page.waitForTimeout(5000);
-    // await japanPage.clickFirstItemFromPackageList();
     await japanPage.clickGetEsimButton();
-    await page.waitForTimeout(5000);
-    await japanPage.verifyEsimPackageName();
-    await page.waitForTimeout(5000);
-    await japanPage.verifyEsimPackageCoverage();
-    await page.waitForTimeout(5000);
-    await japanPage.verifyEsimPackageData();
-    await page.waitForTimeout(5000);
-    await japanPage.verifyEsimPackageValidity();
-    await page.waitForTimeout(5000);
-    await japanPage.verifyEsimPackagePrice();
-    await page.waitForTimeout(5000);
-   
+    await japanPage.verifyPackageTitle();
+    await japanPage.verifyPackageCoverage();
+    await japanPage.verifyPackageData();
+    await japanPage.verifyPackageValidity();
+    await japanPage.verifyPackagePrice();
   });
 });
