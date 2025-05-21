@@ -11,7 +11,6 @@ test.describe("Airalo eSIM Purchase Flow - Japan", () => {
     if (!test.info().project.use.headless) {
       await homePage.clickPushNotificationNo();
     }
-    // await homePage.searchJapanCountryName();
     await homePage.waitAndClickJapanOption();
     await japanPage.isOnJapanPage();
     await japanPage.clickGetEsimButton();

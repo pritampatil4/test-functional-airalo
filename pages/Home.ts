@@ -14,11 +14,9 @@ class HomePage {
     return this.page.locator("#wzrk-cancel");
   }
 
-
   get  firstPaidEsimPackage(): Locator {
     return this.page.locator('xpath=//div[@class="esim-card"]');
   }
-
 
   async clickCookieAccept() {
     await this.buttonCookieAccept.click();
