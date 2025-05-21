@@ -19,10 +19,20 @@ class HomePage {
     return this.page.locator("#wzrk-cancel");
   }
 
+  get optionJapan(): Locator {
+    return this.page.locator('xpath=//ul/li/span[@data-testid="Japan-name" and text()="Japan"]');
+  }
+
+  get  firstPaidEsimPackage(): Locator {
+    return this.page.locator('xpath=//div[@class="esim-card"]');
+  }
+
+
   //action methods
   async searchCountryName(countryName: string) {
     await this.fieldSearchInput.fill(countryName);
-    await this.fieldSearchInput.press("Enter");
+    await this.page.waitForTimeout(5000);
+    // await this.fieldSearchInput.press("Enter");
   }
 
   async clickCookieAccept() {
@@ -32,5 +42,13 @@ class HomePage {
   async clickPushNotificationNo() {
     await this.buttonPushNotificationNo.click();
   }
+
+  async clickJapanOption() {
+    await this.optionJapan.click({force: true});
+  }
+
+  
+
+
 }
 export { HomePage };
