@@ -35,8 +35,8 @@ class HomePage {
     await searchInput.fill("Japan");
     const searchResponse = await searchResponsePromise;
     expect(searchResponse.status()).toBe(200);
-    const japanOption = this.page.locator("span[data-testid='Japan-name']");
-    await japanOption.click();
+    const optionJapan = this.page.locator("span[data-testid='Japan-name']");
+    await optionJapan.click();
   }
 }
 export { HomePage };
