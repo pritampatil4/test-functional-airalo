@@ -6,11 +6,6 @@ class HomePage {
     this.page = page;
   }
 
-  //getter methods
-  get fieldSearchInput(): Locator {
-    return this.page.getByTestId("search-input");
-  }
-
   get buttonCookieAccept(): Locator {
     return this.page.locator("#onetrust-accept-btn-handler");
   }
@@ -19,21 +14,11 @@ class HomePage {
     return this.page.locator("#wzrk-cancel");
   }
 
-  get optionJapan(): Locator {
-    return this.page.locator('xpath=//ul/li/span[@data-testid="Japan-name" and text()="Japan"]');
-  }
 
   get  firstPaidEsimPackage(): Locator {
     return this.page.locator('xpath=//div[@class="esim-card"]');
   }
 
-
-  //action methods
-  async searchJapanCountryName() {
-    await this.fieldSearchInput.fill("Japan");
-    // await this.page.waitForTimeout(5000);
-    await this.fieldSearchInput.press("Enter");
-  }
 
   async clickCookieAccept() {
     await this.buttonCookieAccept.click();
@@ -44,12 +29,16 @@ class HomePage {
   }
 
   async waitAndClickJapanOption() {
-    expect(this.optionJapan).toBeVisible({timeout: 10000});
-    await this.optionJapan.click({force: true});
+    const searchInput = this.page.getByTestId("search-input");
+    const searchResponsePromise = this.page.waitForResponse(response =>
+        response.url().includes('/api/v2/store/search/?q=Japan') &&    
+        response.status() === 200
+    );
+    await searchInput.fill("Japan");
+    const searchResponse = await searchResponsePromise;
+    expect(searchResponse.status()).toBe(200);
+    const japanOption = this.page.locator("span[data-testid='Japan-name']");
+    await japanOption.click();
   }
-
-  
-
-
 }
 export { HomePage };
